@@ -38,6 +38,7 @@ frontend/libpeerconnection.log
 frontend/testem.log
 frontend/typings
 backend/.env
+backend/db.js
 
 # System files
 frontend/.DS_Store

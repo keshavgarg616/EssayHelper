@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ChatbotComponent } from "./chatbot/chatbot";
-import { provideHttpClient } from '@angular/common/http';
+import { ChatbotComponent } from "./chatbot";
 
 @Component({
   selector: 'app-root',
