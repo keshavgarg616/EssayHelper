@@ -1,0 +1,29 @@
+<head>
+    <title>ChatBot</title>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-box">
+            <div *ngFor="let message of history">
+                <div [style]="message.role === 'user' ? 'text-align: right;' : ''">
+                <div [ngClass]="message.role === 'user' ? 'user' : 'bot'">
+                    {{ message.parts[0].text }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+            <mat-form-field appearance="fill" class="w-full" style="width: 600px; max-height: fit-content;">
+                <mat-label>Ask something</mat-label>
+                <input matInput type="text" formControlName="query" [disabled]="loading||profileForm.invalid">
+            </mat-form-field>
+            <div *ngIf="loading" class="loading-bubble">
+                <span>.</span><span>.</span><span>.</span>
+            </div>
+            <button type="submit" [disabled]="loading || profileForm.invalid" hidden></button>
+        </form>
+    </div>
+</body>
