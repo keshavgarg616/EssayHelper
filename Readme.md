@@ -11,7 +11,7 @@ Whether you're applying to a university, a job, or a fellowship, EssayHelper off
 - 💬 Conversational AI to refine and strengthen essays  
 - ✍️ Custom system prompt tailored for application writing guidance  
 - 🔐 Secure backend handles Gemini API interactions (no API keys exposed to frontend)  
-- 👤 Login system with encrypted Emails and Passwords in case of database breach (SHA256 for emails and bcrypt for passwprds)
+- 👤 Login system with encrypted Emails and Passwords in case of database breach (SHA256 for emails and bcrypt for passwords)
 - 💾 Mongoose-based schemas to structure user and history data  
 - 🕓 Persistent chat history across sessions, tied to authenticated accounts  
 - ⚙️ Modular architecture for clean full-stack development  
