@@ -2,6 +2,7 @@ body {
     background-color: #181a1b;
     color: #e8e6e3;
     border: #776e62;
+    height: max-content;
 }
 
 .chat-container {
@@ -17,6 +18,7 @@ body {
 .chat-box {
     height: auto;
     min-height: 300px;
+    max-height: 600px;
     overflow-y: auto;
     scroll-behavior: smooth;
     margin-bottom: 10px;

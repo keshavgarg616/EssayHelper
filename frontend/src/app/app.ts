@@ -1,10 +1,19 @@
 import { Component } from '@angular/core';
-import { ChatbotComponent } from "./chatbot";
+import { CommonModule } from '@angular/common';
+import { ChatbotComponent } from './chatbot';
+import { LoginManagerComponent } from './loginManager';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [ChatbotComponent],
-  template: `<app-chatbot />`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ChatbotComponent, LoginManagerComponent, ReactiveFormsModule ],
+  templateUrl: './app.html',
 })
-export class App {
+export class AppComponent {
+  isLoggedIn = false;
+
+  onLoginStatusChanged(status: boolean) {
+    this.isLoggedIn = status;
+  }
 }
