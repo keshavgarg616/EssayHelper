@@ -30,4 +30,8 @@ export class ApiService {
     getHistory(email: string): Observable<any> {
         return this.http.post(`${this.apiUrl}/get-history`, { email });
     } 
+
+    getName(email: string): Observable<any> {
+        return this.http.post(`${this.apiUrl}/get-name`, { email });
+    }
 }

@@ -8,14 +8,15 @@ Whether you're applying to a university, a job, or a fellowship, EssayHelper off
 
 ## 💡 Key Features
 
-- 💬 Conversational AI to refine and strengthen essays  
-- ✍️ Custom system prompt tailored for application writing guidance  
-- 🔐 Secure backend handles Gemini API interactions (no API keys exposed to frontend)  
-- 👤 Login system with encrypted Emails and Passwords in case of database breach (SHA256 for emails and bcrypt for passwords)
-- 💾 Mongoose-based schemas to structure user and history data  
-- 🕓 Persistent chat history across sessions, tied to authenticated accounts  
-- ⚙️ Modular architecture for clean full-stack development  
-- 🌐 CORS-enabled for seamless frontend-backend communication during development  
+-   💬 Conversational AI to refine and strengthen essays
+-   ✍️ Custom system prompt tailored for application writing guidance
+-   🔐 Secure backend handles Gemini API interactions (no API keys exposed to frontend)
+-   👤 Login system with encrypted Emails and Passwords (SHA256 + bcrypt)
+-   💾 Mongoose-based schemas to structure user and history data
+-   🕓 Persistent chat history across sessions, tied to authenticated accounts
+-   🌐 CORS-enabled for seamless frontend-backend communication
+-   🛡️ Session persistence even after refresh/redeployment using local storage
+-   ⚙️ Modular architecture for clean full-stack development
 
 ---
 
@@ -33,6 +34,7 @@ EssayHelper/
 ## 🚀 Getting Started
 
 ### 🔧 Frontend Setup
+
 ```bash
 cd frontend
 npm install
@@ -40,6 +42,7 @@ npm start
 ```
 
 ### 🔧 Backend Setup
+
 ```bash
 cd backend
 npm install
@@ -57,33 +60,37 @@ GENAI_API_KEY=your_google_gemini_api_key
 MongoDBUsername=your_mongodb_atlas_username
 MongoDBPswd=your_mongodb_atlas_password
 MongoDBClusterString=your_mongodb_cluster_string
-SALT_WORK_FACTOR=the_salt_work_factor_for_bcrypt_password_hashing
-EMAIL_HASH_SECRET=the_sha256_key_for_encrypting_emails
+SALT_WORK_FACTOR=10
+EMAIL_HASH_SECRET=your_sha256_secret_key
 ```
 
 ---
 
 ## 🧠 Tech Stack
 
-- **Frontend**: Angular and Angular Material
-- **Backend**: Node.js, Express
-- **Authentication**: Custom Login Setup
-- **Database**: MongoDB with Mongoose ODM
-- **AI Integration**: Google Gemini API (via Generative Language SDK)
+-   **Frontend**: Angular + Angular Material
+-   **Backend**: Node.js + Express
+-   **Authentication**: Custom login
+-   **Database**: MongoDB (via Mongoose)
+-   **AI**: Google Gemini API (Generative Language SDK)
 
 ---
 
 ## 🔐 Authentication & Persistence
 
-- Users can log in securely using their email and password credentials.
-- Chat histories are stored in MongoDB and associated with user accounts.
-- When users return, they can continue from where they left off.
+-   User login credentials are encrypted and securely stored.
+-   Logins are stored and maintained using local storage of the browser (Client Side)
+-   Chat history is tied to the authenticated user and fetched after refresh/login.
 
 ---
 
 ## 📌 Future Improvements
 
-- Client Side Session Management
-- Packaging application for release online  
+-   Implementing JWT
+-   Publishing online for public use
 
 ---
+
+## 🧠 Contributors
+
+Built with ❤️ by Keshav Garg

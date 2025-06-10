@@ -13,6 +13,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class AppComponent {
   isLoggedIn = false;
 
+  ngOnInit() {
+    const email = localStorage.getItem('email');
+    if (email) {
+      this.isLoggedIn = true;
+    }
+  }
+
   onLoginStatusChanged(status: boolean) {
     this.isLoggedIn = status;
   }

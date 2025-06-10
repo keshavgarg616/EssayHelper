@@ -19,10 +19,8 @@ export class ChatbotComponent {
   constructor(private apiService: ApiService) { 
   this.apiService.getHistory(localStorage.getItem("email")!).subscribe({
     next: (response) => {
-      console.log('History fetched successfully:', response);
+      console.log('History fetched successfully');
       this.history = response.history || [];
-      console.log('Fetched history:', response.history);
-      console.log('History:', this.history);
     },
     error: (err) => {
       console.error('Error fetching history:', err);
@@ -60,15 +58,15 @@ export class ChatbotComponent {
       this.loading = false;
       this.apiService.updateHistory(localStorage.getItem("email")!, this.history!).subscribe({
       next: (response) => {
-        console.log('History updated successfully:', response);
+        console.log('History updated successfully:');
       },
       error: (error) => {
-        console.error('Error updating history:', error);
+        console.error('Error updating history:');
       }
     });
       },
       error: (error) => {
-        console.error('Error:', error);
+        console.error('Error:');
         this.loading = false;
       },
     });
