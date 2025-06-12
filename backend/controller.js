@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
-import User from "./schema.js";
+import { User, Histories } from "./schema.js";
 import jwt from "jsonwebtoken";
 
 dotenv.config();
@@ -40,6 +40,11 @@ export const signUp = async (req, res) => {
 		}
 
 		const newUser = new User({ name, email, password });
+		const userHistory = new Histories({
+			foreign_id: newUser._id,
+			history: [],
+		});
+		await userHistory.save();
 		await newUser.save();
 
 		res.status(201).json({
@@ -82,7 +87,7 @@ export const login = async (req, res) => {
 export const updateHistory = async (req, res) => {
 	try {
 		const { history } = req.body;
-		const user = await User.findByUserId(req.userId);
+		const user = await Histories.findByUserId(req.userId);
 		await user.updateHistory(history);
 		res.status(201).json({ message: "History updated" });
 	} catch (error) {
@@ -93,7 +98,7 @@ export const updateHistory = async (req, res) => {
 
 export const getHistory = async (req, res) => {
 	try {
-		const user = await User.findByUserId(req.userId);
+		const user = await Histories.findByUserId(req.userId);
 		res.json({ history: user.history || [] });
 	} catch (error) {
 		console.error("History get error:", error);
@@ -103,7 +108,7 @@ export const getHistory = async (req, res) => {
 
 export const deleteHistory = async (req, res) => {
 	try {
-		const user = await User.findByUserId(req.userId);
+		const user = await Histories.findByUserId(req.userId);
 		user.updateHistory([]);
 		res.status(200).json({ message: "History deleted" });
 	} catch (error) {

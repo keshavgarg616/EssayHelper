@@ -32,19 +32,6 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		minlength: 8,
 	},
-	history: {
-		type: [
-			{
-				role: { type: String, required: true },
-				parts: [
-					{
-						text: { type: String, required: true },
-					},
-				],
-			},
-		],
-		required: false,
-	},
 });
 
 // Pre-save hook for password + email hashing
@@ -77,14 +64,40 @@ userSchema.statics.findByUserId = async function (userId) {
 	return this.findOne({ _id: userId });
 };
 
-userSchema.methods.updateHistory = async function (history) {
+const historiesSchema = new mongoose.Schema({
+	foreign_id: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+	history: {
+		type: [
+			{
+				role: { type: String, required: true },
+				parts: [
+					{
+						text: { type: String, required: true },
+					},
+				],
+			},
+		],
+		required: false,
+	},
+});
+
+historiesSchema.statics.findByUserId = async function (userId) {
+	return this.findOne({ foreign_id: userId });
+};
+
+historiesSchema.methods.updateHistory = async function (history) {
 	this.history = history;
 	return this.save();
 };
 
-userSchema.methods.getHistory = async function () {
+historiesSchema.methods.getHistory = async function () {
 	return this.history;
 };
 
 const User = mongoose.model("User", userSchema);
-export default User;
+const Histories = mongoose.model("Histories", historiesSchema);
+export { User, Histories };

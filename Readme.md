@@ -113,7 +113,6 @@ JWT_SECRET=your_jwt_encryption_key
 ## 📌 Future Improvements
 
 -   🌍 **Production Deployment**: Host the application online with a custom domain.
--   🧱 **Refined Database Architecture**: Split the current MongoDB schema into separate `users` and `histories` collections to improve scalability, maintainability, and data integrity.
 
 ---
 
