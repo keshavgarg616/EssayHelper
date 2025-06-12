@@ -11,14 +11,22 @@ export function createPasswordValidator(): ValidatorFn {
 		const hasNumeric = /[0-9]+/.test(value);
 		const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]+/.test(value);
 		const isLongEnough = value.length >= 8;
+		const isValid =
+			hasUpperCase &&
+			hasLowerCase &&
+			hasNumeric &&
+			hasSpecialChar &&
+			isLongEnough;
 
-		return {
-			hasUpperCase: !hasUpperCase,
-			hasLowerCase: !hasLowerCase,
-			hasNumeric: !hasNumeric,
-			hasSpecialChar: !hasSpecialChar,
-			isLongEnough: !isLongEnough,
-		};
+		return isValid
+			? null
+			: {
+					hasUpperCase: !hasUpperCase,
+					hasLowerCase: !hasLowerCase,
+					hasNumeric: !hasNumeric,
+					hasSpecialChar: !hasSpecialChar,
+					isLongEnough: !isLongEnough,
+			  };
 	};
 }
 

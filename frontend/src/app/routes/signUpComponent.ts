@@ -46,11 +46,7 @@ export class SignUpComponent {
 			name: new FormControl("", [Validators.required]),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			pswd: new FormControl("", {
-				validators: [
-					Validators.required,
-					Validators.minLength(8),
-					createPasswordValidator(),
-				],
+				validators: [Validators.required, createPasswordValidator()],
 				updateOn: "change",
 			}),
 			confirmPswd: new FormControl("", [Validators.required]),
