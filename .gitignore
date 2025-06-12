@@ -20,6 +20,8 @@ frontend/.c9/
 frontend/*.launch
 frontend/.settings/
 frontend/*.sublime-workspace
+frontend/.angular
+frontend/public
 
 # Visual Studio Code
 frontend/.vscode/*
@@ -28,6 +30,7 @@ frontend/.vscode/*
 !frontend/.vscode/launch.json
 !frontend/.vscode/extensions.json
 frontend/.history/*
+frontend/.editorconfig
 
 # Miscellaneous
 frontend/.angular/cache

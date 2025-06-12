@@ -1,26 +1,13 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ChatbotComponent } from './chatbot';
-import { LoginManagerComponent } from './loginManager';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { provideHttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ChatbotComponent, LoginManagerComponent, ReactiveFormsModule ],
-  templateUrl: './app.html',
+	selector: "app-root",
+	imports: [RouterOutlet],
+	templateUrl: "./app.html",
+	styleUrl: "./app.css",
 })
-export class AppComponent {
-  isLoggedIn = false;
-
-  ngOnInit() {
-    const email = localStorage.getItem('email');
-    if (email) {
-      this.isLoggedIn = true;
-    }
-  }
-
-  onLoginStatusChanged(status: boolean) {
-    this.isLoggedIn = status;
-  }
+export class App {
+	protected title = "frontend";
 }

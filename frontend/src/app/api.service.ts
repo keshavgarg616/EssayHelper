@@ -1,37 +1,79 @@
 // api.service.ts
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-    providedIn: 'any' // 'any' is used to ensure the service is available throughout the app,
+	providedIn: "root",
 })
 export class ApiService {
-    private apiUrl = 'http://localhost:3000'; // Your Node backend URL
+	private apiUrl = "http://localhost:3000";
 
-    constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
-    sendMessage(message: string, history: { role: string; parts: { text: string }[] }[]): Observable<any> {
-        return this.http.post(`${this.apiUrl}/chat`, { message, history });
-    }
+	private getAuthHeaders() {
+		const token = localStorage.getItem("token");
+		return {
+			headers: new HttpHeaders({
+				Authorization: `${token}`,
+			}),
+		};
+	}
 
-    signup(name: string, email: string, password: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/signup`, { name, email, password });
-    }
+	sendMessage(
+		message: string,
+		history: { role: string; parts: { text: string }[] }[]
+	): Observable<any> {
+		return this.http.post(
+			`${this.apiUrl}/chat`,
+			{ message, history },
+			this.getAuthHeaders()
+		);
+	}
 
-    login(email: string, password: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/login`, { email, password });
-    }
+	signup(name: string, email: string, password: string): Observable<any> {
+		return this.http.post(`${this.apiUrl}/signup`, {
+			name,
+			email,
+			password,
+		});
+	}
 
-    updateHistory(email: string, history: { role: string; parts: { text: string }[] }[]): Observable<any> {
-        return this.http.post(`${this.apiUrl}/save-history`, { email, history });
-    } 
+	login(email: string, password: string): Observable<any> {
+		return this.http.post(`${this.apiUrl}/login`, { email, password });
+	}
 
-    getHistory(email: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/get-history`, { email });
-    } 
+	updateHistory(
+		history: { role: string; parts: { text: string }[] }[]
+	): Observable<any> {
+		return this.http.post(
+			`${this.apiUrl}/update-history`,
+			{ history },
+			this.getAuthHeaders()
+		);
+	}
 
-    getName(email: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/get-name`, { email });
-    }
+	getHistory(): Observable<any> {
+		return this.http.post(
+			`${this.apiUrl}/get-history`,
+			{},
+			this.getAuthHeaders()
+		);
+	}
+
+	getName(email: string): Observable<any> {
+		return this.http.post(
+			`${this.apiUrl}/get-name`,
+			{ email },
+			this.getAuthHeaders()
+		);
+	}
+
+	deleteHistory(): Observable<any> {
+		return this.http.post(
+			`${this.apiUrl}/delete-history`,
+			{},
+			this.getAuthHeaders()
+		);
+	}
 }
