@@ -20,13 +20,37 @@ Whether you're applying to a university, a job, or a fellowship, EssayHelper off
 
 ---
 
+## 🔧 Architectural Highlights
+
+-   🧱 **Modular Backend Structure**
+
+    -   Separated concerns using **controllers**, **routes**, and **services**
+    -   Reusable utility functions and middleware for clean organization
+
+-   🛡 **Route Guards and JWT Integration**
+
+    -   Stateless authentication with **JWT**
+    -   Protected API endpoints using middleware validators
+    -   Angular route guards ensure only logged-in users access the chat
+
+-   🔁 **Multiple Angular Routes**
+
+    -   Separate pages for **login**, **signup**, and **chat**
+    -   Clean navigation flow using Angular Router
+
+-   📋 **Form Validations**
+    -   Strong frontend validation for user inputs using reactive forms
+    -   Custom validators for password strength and confirmation
+
+---
+
 ## 📁 Project Structure
 
 ```
 EssayHelper/
-├── frontend/       # Angular app
-├── backend/        # Node.js + Express server
-├── README.md       # Project documentation
+├── frontend/            # Angular app
+├── backend/             # Node.js + Express server
+├── README.md            # Project documentation
 ```
 
 ---
@@ -62,6 +86,7 @@ MongoDBPswd=your_mongodb_atlas_password
 MongoDBClusterString=your_mongodb_cluster_string
 SALT_WORK_FACTOR=10
 EMAIL_HASH_SECRET=your_sha256_secret_key
+JWT_SECRET=your_jwt_encryption_key
 ```
 
 ---
@@ -70,7 +95,7 @@ EMAIL_HASH_SECRET=your_sha256_secret_key
 
 -   **Frontend**: Angular + Angular Material
 -   **Backend**: Node.js + Express
--   **Authentication**: Custom login
+-   **Authentication**: Custom login with JWT
 -   **Database**: MongoDB (via Mongoose)
 -   **AI**: Google Gemini API (Generative Language SDK)
 
@@ -78,16 +103,17 @@ EMAIL_HASH_SECRET=your_sha256_secret_key
 
 ## 🔐 Authentication & Persistence
 
--   User login credentials are encrypted and securely stored.
--   Logins are stored and maintained using local storage of the browser (Client Side)
--   Chat history is tied to the authenticated user and fetched after refresh/login.
+-   User credentials are encrypted using SHA256 + bcrypt
+-   JWT tokens manage user sessions
+-   Frontend stores auth state in browser local storage
+-   Authenticated users have access to persistent chat history
 
 ---
 
 ## 📌 Future Improvements
 
--   Implementing JWT
--   Publishing online for public use
+-   🌍 **Production Deployment**: Host the application online with a custom domain.
+-   🧱 **Refined Database Architecture**: Split the current MongoDB schema into separate `users` and `histories` collections to improve scalability, maintainability, and data integrity.
 
 ---
 
