@@ -84,7 +84,7 @@ GENAI_API_KEY=your_google_gemini_api_key
 MongoDBUsername=your_mongodb_atlas_username
 MongoDBPswd=your_mongodb_atlas_password
 MongoDBClusterString=your_mongodb_cluster_string
-SALT_WORK_FACTOR=10
+SALT_WORK_FACTOR=your_salt_work_factor_for_bcrypt
 EMAIL_HASH_SECRET=your_sha256_secret_key
 JWT_SECRET=your_jwt_encryption_key
 ```
